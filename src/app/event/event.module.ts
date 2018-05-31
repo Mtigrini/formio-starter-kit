@@ -11,6 +11,7 @@ import {
 import { EventViewComponent } from './event-view/event-view.component';
 import { EventResourceComponent } from './event-resource/event-resource.component';
 import { ParticipantModule } from './participant/participant.module';
+import { VolunteerModule } from './volunteer/volunteer.module';
 
 const eventResourceRoutes: Routes = FormioResourceRoutes({
   view: EventViewComponent,
@@ -19,7 +20,12 @@ const eventResourceRoutes: Routes = FormioResourceRoutes({
 
 eventResourceRoutes[2].children.push({
   path: 'participant',
-  loadChildren: () => ParticipantModule
+  loadChildren: () => ParticipantModule,
+});
+
+eventResourceRoutes[2].children.push({
+  path: 'volunteer',
+  loadChildren: () => VolunteerModule,
 });
 
 @NgModule({

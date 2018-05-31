@@ -13,7 +13,9 @@ import { HeroComponent } from './hero/hero.component';
 
 import { AuthModule } from './auth/auth.module';
 import { EventModule } from './event/event.module';
+
 import { UserModule } from './user/user.module';
+import { VolunteerModule } from './event/volunteer/volunteer.module';
 
 @NgModule({
   declarations: [
