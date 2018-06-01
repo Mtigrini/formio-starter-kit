@@ -35,8 +35,16 @@ export class ParticipantCreateComponent extends FormioResourceCreateComponent im
 
         // If they wish to have a custom registration form.
         if (event.data.registrationForm) {
-          const registerForm = FormioUtils.getComponent(form.components, 'registration', true);
+          console.log(form.components); // form.components are the fields of the form
+
+          // LA CLÉ ICI N'ÉTAIT PAS BONNE, IL FALLAIT LA CLÉ DANS L'API
+          const registerForm = FormioUtils.getComponent(form.components, 'event');
+
           registerForm.src = this.service.formFormio.projectUrl + '/' + event.data.registrationForm;
+          registerForm.defaultProperty =  event.data.title;
+          registerForm.hidden = false;
+          registerForm.disabled = true;
+          console.log(registerForm);
         }
 
         // Wait for the current user to be loaded.
