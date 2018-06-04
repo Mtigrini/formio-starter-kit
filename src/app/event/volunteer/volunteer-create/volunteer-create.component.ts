@@ -35,12 +35,29 @@ export class VolunteerCreateComponent extends FormioResourceCreateComponent impl
 
         // If they wish to have a custom registration form.
         if (event.data.registrationForm) {
-          const registerForm = FormioUtils.getComponent(form.components, 'registration', true);
+
+          const registerForm = FormioUtils.getComponent(form.components, 'event', true);
           registerForm.src = this.service.formFormio.projectUrl + '/' + event.data.registrationForm;
+
+          console.log(event);
+          registerForm.defaultValue = event;  // Il faut référer l'id -> Voir la ressource dans formio
+          registerForm.hidden = true;
+          console.log(registerForm);
+
         }
 
         // Wait for the current user to be loaded.
         this.auth.userReady.then((user) => {
+          const registerForm2 = FormioUtils.getComponent(form.components, 'nometprenom', true);
+          registerForm2.src = this.service.formFormio.projectUrl + '/' + event.data.registrationForm;
+          registerForm2.defaultValue = this.auth.user.data.firstName + ' ' + this.auth.user.data.lastName;
+          registerForm2.hidden = false;
+
+
+          const registerForm3 = FormioUtils.getComponent(form.components, 'courriel', true);
+          registerForm3.src = this.service.formFormio.projectUrl + '/' + event.data.registrationForm;
+          registerForm3.defaultValue = this.auth.user.data.email;
+          registerForm3.hidden = false;
 
           // Default the user data inside of the registration form.
           this.service.resource.data.registration = {data: user.data};

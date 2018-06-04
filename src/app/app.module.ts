@@ -5,6 +5,7 @@ import { FormioModule, FormioAppConfig } from 'angular-formio';
 import { FormioAuthService, FormioAuthConfig } from 'angular-formio/auth';
 import { FormioResources } from 'angular-formio/resource';
 import { AuthConfig, AppConfig } from '../config';
+import { FormioGrid } from 'angular-formio/grid/grid.module';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -16,13 +17,15 @@ import { EventModule } from './event/event.module';
 
 import { UserModule } from './user/user.module';
 import { VolunteerModule } from './event/volunteer/volunteer.module';
+import { VolunteerViewComponent } from './volunteer/volunteer-view/volunteer-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     HeaderComponent,
-    HeroComponent
+    HeroComponent,
+    VolunteerViewComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +55,7 @@ import { VolunteerModule } from './event/volunteer/volunteer.module';
     ])
   ],
   providers: [
+    FormioGrid,
     FormioResources,
     FormioAuthService,
     {provide: FormioAuthConfig, useValue: AuthConfig},

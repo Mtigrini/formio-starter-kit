@@ -19,14 +19,16 @@ const eventResourceRoutes: Routes = FormioResourceRoutes({
 });
 
 eventResourceRoutes[2].children.push({
+  path: 'volunteer',
+  loadChildren: () => VolunteerModule,
+});
+
+eventResourceRoutes[2].children.push({
   path: 'participant',
   loadChildren: () => ParticipantModule,
 });
 
-eventResourceRoutes[2].children.push({
-  path: 'volunteer',
-  loadChildren: () => VolunteerModule,
-});
+
 
 @NgModule({
   imports: [
