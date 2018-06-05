@@ -1,1 +1,36 @@
-<formio-grid src="https://jdggmmtbamlmyav.form.io/volunteer"></formio-grid>
+<!-- <formio-grid (click)="afterLoad(row)" #grid2 src="https://jdggmmtbamlmyav.form.io/volunteer"></formio-grid> -->
+
+<div class="formio-grid"> 
+    <formio-alerts [alerts]="grid.alerts">
+
+    </formio-alerts> 
+    <table class="table table-condensed table-bordered table-striped table-hover"> 
+        <thead> 
+            <tr> 
+                <th *ngFor="let col of grid.columns"> 
+                    <a (click)="grid.sortColumn(col)"> {{ col.label }}&nbsp;
+                        <span [ngClass]="{'glyphicon-triangle-top': (col.sort === 'asc'), 'glyphicon-triangle-bottom': (col.sort === 'desc')}" class="glyphicon" *ngIf="col.sort">
+
+                        </span> 
+                    </a> 
+                </th> 
+            </tr>
+         </thead>
+          <formio-loader>
+
+          </formio-loader>
+           <tbody *ngIf="!isLoading">
+                <tr *ngFor="let row of grid.rows" routerLink="../{{row._id}}" (click)="afterLoad(row)"> 
+                    <td *ngFor="let col of grid.columns" [innerHTML]="grid.data(row, col)"></td>
+                 </tr> 
+            </tbody>
+            <tfoot>
+                 <tr>
+                      <td [colSpan]="grid.columns.length"> 
+                          <!-- <pagination [totalItems]="grid.total" [(ngModel)]="grid.skip" (pageChanged)="pageChanged($event)" class="pagination-sm"></pagination> -->
+                           <span class="pull-right item-counter"><span class="page-num">{{ firstItem }} - {{ lastItem }}</span> / {{ total }} total</span> 
+                        </td>
+                     </tr>
+            </tfoot> 
+        </table>
+     </div> 
