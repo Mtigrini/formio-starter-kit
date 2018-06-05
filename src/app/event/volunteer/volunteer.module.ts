@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { FormioModule } from 'angular-formio';
 import { FormioGrid } from 'angular-formio/grid/grid.module';
 import {
@@ -12,6 +12,14 @@ import {
 import { VolunteerCreateComponent } from './volunteer-create/volunteer-create.component';
 import { VolunteerIndexComponent } from './volunteer-index/volunteer-index.component';
 import { VolunteerEditComponent } from './volunteer-edit/volunteer-edit.component';
+import { VolunteerResourceComponent } from './volunteer-resource/volunteer-resource.component';
+
+const eventResourceRoutes: Routes = FormioResourceRoutes ({
+  resource: VolunteerResourceComponent,
+  index: VolunteerIndexComponent,
+  create: VolunteerCreateComponent,
+  edit: VolunteerEditComponent
+});
 
 @NgModule({
   imports: [
@@ -20,12 +28,13 @@ import { VolunteerEditComponent } from './volunteer-edit/volunteer-edit.componen
     FormioModule,
     FormioResource,
     RouterModule.forChild(FormioResourceRoutes({
+      resource: VolunteerResourceComponent,
       index: VolunteerIndexComponent,
       create: VolunteerCreateComponent,
       edit: VolunteerEditComponent
-    }))
+    })
   ],
-  declarations: [VolunteerCreateComponent, VolunteerIndexComponent, VolunteerEditComponent],
+  declarations: [VolunteerCreateComponent, VolunteerIndexComponent, VolunteerEditComponent, VolunteerResourceComponent],
   providers: [
     FormioResourceService,
     {

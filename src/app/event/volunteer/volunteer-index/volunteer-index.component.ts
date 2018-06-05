@@ -1,11 +1,13 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormioGridComponent } from 'angular-formio/grid/grid.component';
 import { FormioGrid } from 'angular-formio/grid/grid.module';
-import { FormioResource, FormioResourceService } from 'angular-formio/resource';
+import { FormioResource, FormioResourceService, FormioResourceComponent } from 'angular-formio/resource';
 import {FormioResourceConfig} from 'angular-formio/resource/resource.config';
 import { FormioService, FormioLoader, FormioAlerts } from 'angular-formio';
 import FormioUtils from 'formiojs/utils';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { VolunteerEditComponent } from '../volunteer-edit/volunteer-edit.component';
+
 
 
 @Component({
@@ -13,15 +15,17 @@ import { Router } from '@angular/router';
   templateUrl: './volunteer-index.component.html',
   styleUrls: ['./volunteer-index.component.scss']
 })
-export class VolunteerIndexComponent implements OnInit {
+export class VolunteerIndexComponent extends FormioResourceComponent implements OnInit {
   @ViewChild('grid2') public grid2: FormioGridComponent;
   public grid: FormioGridComponent;
   public router: Router;
 
-  constructor(private service: FormioResourceService, private service2: FormioGrid) {
+  constructor(public service: FormioResourceService, public route: ActivatedRoute) {
+    super(service, route);
     // console.log(service);
     // console.log(grid);
     // console.log(service);
+    console.log(this.route);
   }
 
   ngOnInit() {
@@ -35,7 +39,7 @@ export class VolunteerIndexComponent implements OnInit {
   }
 
   afterLoad(row: any) {
-    console.log(this.router);
+    // console.log(this.router);
     console.log(row);
   }
 
