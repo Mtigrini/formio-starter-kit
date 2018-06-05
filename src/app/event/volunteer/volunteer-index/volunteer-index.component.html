@@ -20,7 +20,7 @@
 
           </formio-loader>
            <tbody *ngIf="!isLoading">
-                <tr *ngFor="let row of grid.rows" routerLink="../{{row._id}}" (click)="afterLoad(row)"> 
+                <tr *ngFor="let row of grid.rows" routerLink="../{{row._id}}/edit" (click)="afterLoad(row)"> 
                     <td *ngFor="let col of grid.columns" [innerHTML]="grid.data(row, col)"></td>
                  </tr> 
             </tbody>
