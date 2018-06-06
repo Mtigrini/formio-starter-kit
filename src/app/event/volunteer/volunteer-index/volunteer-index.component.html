@@ -7,7 +7,7 @@
     <table class="table table-condensed table-bordered table-striped table-hover"> 
         <thead> 
             <tr> 
-                <th *ngFor="let col of grid.columns"> 
+                <th *ngFor="let col of grid.columns" > 
                     <a (click)="grid.sortColumn(col)"> {{ col.label }}&nbsp;
                         <span [ngClass]="{'glyphicon-triangle-top': (col.sort === 'asc'), 'glyphicon-triangle-bottom': (col.sort === 'desc')}" class="glyphicon" *ngIf="col.sort">
 
@@ -19,7 +19,7 @@
           <formio-loader>
 
           </formio-loader>
-           <tbody *ngIf="!isLoading">
+           <tbody *ngIf="!grid.isLoading">
                 <tr *ngFor="let row of grid.rows" routerLink="../{{row._id}}/edit" (click)="afterLoad(row)"> 
                     <td *ngFor="let col of grid.columns" [innerHTML]="grid.data(row, col)"></td>
                  </tr> 
