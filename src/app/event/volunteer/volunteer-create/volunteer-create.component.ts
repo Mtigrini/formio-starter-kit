@@ -71,4 +71,8 @@ export class VolunteerCreateComponent extends FormioResourceCreateComponent impl
       });
     });
   }
+  public async redirect(event: Event): Promise<void> {
+    await this.onSubmit(event); // CECI EST IMPOTANT: C'est ce qui permet de faire l'update!!!
+    await setTimeout(() => {this.router.navigate(['event/' + this.service.resourceId + '/volunteer']); }, 200);
+  }
 }
