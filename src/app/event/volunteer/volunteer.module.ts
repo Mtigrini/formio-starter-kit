@@ -32,7 +32,7 @@ const eventResourceRoutes: Routes = FormioResourceRoutes ({
       index: VolunteerIndexComponent,
       create: VolunteerCreateComponent,
       edit: VolunteerEditComponent
-    })
+    }))
   ],
   declarations: [VolunteerCreateComponent, VolunteerIndexComponent, VolunteerEditComponent, VolunteerResourceComponent],
   providers: [
