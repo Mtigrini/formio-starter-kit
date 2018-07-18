@@ -9,7 +9,6 @@ import {
   FormioResourceService
 } from 'angular-formio/resource';
 import { ParticipantCreateComponent } from './participant-create/participant-create.component';
-import { VolunteerCreateComponent } from '../volunteer/volunteer-create/volunteer-create.component';
 
 @NgModule({
   imports: [
@@ -17,8 +16,7 @@ import { VolunteerCreateComponent } from '../volunteer/volunteer-create/voluntee
     FormioModule,
     FormioResource,
     RouterModule.forChild(FormioResourceRoutes({
-      create: ParticipantCreateComponent,
-      // index: "https://www.google.com"
+      create: ParticipantCreateComponent
     }))
   ],
   declarations: [ParticipantCreateComponent],

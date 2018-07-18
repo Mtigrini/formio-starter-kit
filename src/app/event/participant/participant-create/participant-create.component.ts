@@ -26,18 +26,14 @@ export class ParticipantCreateComponent extends FormioResourceCreateComponent im
 
   ngOnInit() {
     super.ngOnInit();
-
     // Wait for the parent event to be loaded.
     this.service.resources['event'].resourceLoaded.then((event) => {
-
       // Wait for the participant form to load.
       this.service.formLoaded.then((form) => {
-
         // If they wish to have a custom registration form.
         if (event.data.registrationForm) {
           console.log(form.components); // form.components are the fields of the form
 
-          // LA CLÉ ICI N'ÉTAIT PAS BONNE, IL FALLAIT LA CLÉ DANS L'API
           const registerForm = FormioUtils.getComponent(form.components, 'event');
 
           registerForm.src = this.service.formFormio.projectUrl + '/' + event.data.registrationForm;
@@ -46,13 +42,10 @@ export class ParticipantCreateComponent extends FormioResourceCreateComponent im
           registerForm.disabled = true;
           console.log(registerForm);
         }
-
         // Wait for the current user to be loaded.
         this.auth.userReady.then((user) => {
-
           // Default the user data inside of the registration form.
           this.service.resource.data.registration = {data: user.data};
-
           // Tell our form to re-render the submission.
           this.service.refresh.emit({
             property: 'submission',

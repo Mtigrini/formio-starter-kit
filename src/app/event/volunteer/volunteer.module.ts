@@ -14,13 +14,6 @@ import { VolunteerIndexComponent } from './volunteer-index/volunteer-index.compo
 import { VolunteerEditComponent } from './volunteer-edit/volunteer-edit.component';
 import { VolunteerResourceComponent } from './volunteer-resource/volunteer-resource.component';
 
-const eventResourceRoutes: Routes = FormioResourceRoutes ({
-  resource: VolunteerResourceComponent,
-  index: VolunteerIndexComponent,
-  create: VolunteerCreateComponent,
-  edit: VolunteerEditComponent
-});
-
 @NgModule({
   imports: [
     FormioGrid,

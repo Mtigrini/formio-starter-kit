@@ -29,30 +29,23 @@ export class VolunteerCreateComponent extends FormioResourceCreateComponent impl
 
     // Wait for the parent event to be loaded.
     this.service.resources['event'].resourceLoaded.then((event) => {
-
       // Wait for the volunteer form to load.
       this.service.formLoaded.then((form) => {
-
         // If they wish to have a custom registration form.
         if (event.data.registrationForm) {
-
           const registerForm = FormioUtils.getComponent(form.components, 'event', true);
           registerForm.src = this.service.formFormio.projectUrl + '/' + event.data.registrationForm;
 
-          console.log(event);
-          registerForm.defaultValue = event;  // Il faut référer l'id -> Voir la ressource dans formio
+          registerForm.defaultValue = event;
           registerForm.hidden = true;
-          console.log(registerForm);
 
         }
-
         // Wait for the current user to be loaded.
         this.auth.userReady.then((user) => {
           const registerForm2 = FormioUtils.getComponent(form.components, 'nometprenom', true);
           registerForm2.src = this.service.formFormio.projectUrl + '/' + event.data.registrationForm;
           registerForm2.defaultValue = this.auth.user.data.firstName + ' ' + this.auth.user.data.lastName;
           registerForm2.hidden = false;
-
 
           const registerForm3 = FormioUtils.getComponent(form.components, 'courriel', true);
           registerForm3.src = this.service.formFormio.projectUrl + '/' + event.data.registrationForm;
@@ -71,8 +64,9 @@ export class VolunteerCreateComponent extends FormioResourceCreateComponent impl
       });
     });
   }
+
   public async redirect(event: Event): Promise<void> {
-    await this.onSubmit(event); // CECI EST IMPOTANT: C'est ce qui permet de faire l'update!!!
-    await setTimeout(() => {this.router.navigate(['event/' + this.service.resourceId + '/volunteer']); }, 200);
+    await this.onSubmit(event); // CECI EST IMPOTANT: C'est ce qui permet de créer l'enregistrement!
+    await setTimeout(() => {this.router.navigate(['event/']); }, 200);
   }
 }
