@@ -32,15 +32,11 @@ export class ParticipantCreateComponent extends FormioResourceCreateComponent im
       this.service.formLoaded.then((form) => {
         // If they wish to have a custom registration form.
         if (event.data.registrationForm) {
-          console.log(form.components); // form.components are the fields of the form
-
           const registerForm = FormioUtils.getComponent(form.components, 'event');
 
-          registerForm.src = this.service.formFormio.projectUrl + '/' + event.data.registrationForm;
           registerForm.defaultProperty =  event.data.title;
           registerForm.hidden = false;
           registerForm.disabled = true;
-          console.log(registerForm);
         }
         // Wait for the current user to be loaded.
         this.auth.userReady.then((user) => {
@@ -54,5 +50,6 @@ export class ParticipantCreateComponent extends FormioResourceCreateComponent im
         });
       });
     });
+  }
   }
 }

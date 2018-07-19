@@ -43,14 +43,11 @@ export class VolunteerCreateComponent extends FormioResourceCreateComponent impl
         // Wait for the current user to be loaded.
         this.auth.userReady.then((user) => {
           const registerForm2 = FormioUtils.getComponent(form.components, 'nometprenom', true);
-          registerForm2.src = this.service.formFormio.projectUrl + '/' + event.data.registrationForm;
           registerForm2.defaultValue = this.auth.user.data.firstName + ' ' + this.auth.user.data.lastName;
-          registerForm2.hidden = false;
 
           const registerForm3 = FormioUtils.getComponent(form.components, 'courriel', true);
-          registerForm3.src = this.service.formFormio.projectUrl + '/' + event.data.registrationForm;
           registerForm3.defaultValue = this.auth.user.data.email;
-          registerForm3.hidden = false;
+
 
           // Default the user data inside of the registration form.
           this.service.resource.data.registration = {data: user.data};
